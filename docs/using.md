@@ -63,16 +63,32 @@ bias the fit too much don't bother deleting the points.
 * `f` to refit
 * `q` to quit
 
-Aim for RMS < 0.07 or so.  
+Aim for RMS < 0.07 or so.  Note that points marked with diamonds are already ignored during the fit, as they are
+automatically flagged as outliers. 
 
-The next screen lets you fit the wavelength solution with IRAF's `autoidentify` and `reidentify`:
+The next screen (see below) lets you fit the wavelength solution with IRAF's `autoidentify` and `reidentify`:
+
+![text](fit_wl_solution.png)
 
 * `f` to fit/refit
-* `j` to switch to residuals plot
-* `d` to delete outliers
-* `q` twice to save solution
 
-Blue side can be bad below 4000:  delete all the points with `d`, hit `q`, `f`, `l` (to reidentify lines). Good RMS is < 0.07 or so. `q` to save and continue.
+Once you pressed `f`, here is what the screen should look like (blue side!)
+![text](fit_wl_solution_2.png)
+
+The next step is to remove outlier points,
+then add the full line list back in.
+
+To improve the fit:
+
+* `j` to switch to residuals plot
+* `l` to go back to the previous view (after having pressed `j`)
+* `d` to delete outliers (Note: blue side is often bad below 4000, delete those points)
+* `f` ro re-fit (good values for the fit are <0.07 RMS)
+* iterate between `d` and `f` until you are satisfied
+* `q` to save solution.
+* when you have the line view back, press `l` to add lines back in
+* press `j` to view the new residuals plot (RMS will be slightly higher)
+* if you are happy, press `q` to quit and save solution. 
 
 If you have to (or want to) manually identify lines:
 
@@ -88,8 +104,6 @@ do it for a second line (may already be identified)
 * `f` to fit again
 * `q` twice to save solution
 
-When reidentifying, bad RMS may often be fixed just by hitting `l` then `q`.
-
 The process above (choose aperture, fit trace, fit/verify dispersion solution) occurs each time you run `extract1D()`.  If the extraction is part of the `store_standards()` call, you'll then continue with the following prompts:
 
 The terminal will prompt: `change wavelength coordinate assignments?`
@@ -98,9 +112,17 @@ Sensible defaults (assuming the 600/4000 grating on the blue side and 316/7500 g
 
 	5500-10000, 1.525 red (new red camera)
 	5500-7800, 2.47 red (old red camera)
-	3800-5700, 1.07 blue
+	3400-5700, 1.07 blue (advanced: you can push to bluer wavelengths, for example 3200, if your target is particularly blue
+	and if you know well how to deal with sensitivity function blowing up at the bluest end)
 	
 Accept the suggested number of output pixels, then say `no` when it asks you again if you want to change them.
+
+You will be prompted back to the wavelength calibration window.  Once again, press `l` to add lines, `f` to
+fit, `j` to see the residuals (and from here `l` to see the fit), `d` to remove outliers, and `f` to refit.  Press `q` twice to move on to the next
+step. 
+
+
+
 
 Next, you'll fit throughput functions for the standards; this uses IRAF's `standards`.	
 
