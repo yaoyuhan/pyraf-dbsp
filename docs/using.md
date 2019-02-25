@@ -49,15 +49,21 @@ The first screen (shown below) allows you to edit the aperture for extracting th
 * `f` to fit
 * `q` to quit
 
-The second screen allows you to fit the trace interactively using IRAF's `icfit`:
+After you have pressed 'q' to quit, you will be presented with an option to confirm;
+the default is 'yes'. You can just press enter. You will have to click enter twice.
+
+The second screen (shown below) allows you to fit the trace interactively using IRAF's `icfit`:
+![text](trace.png)
 
 * `?` for help
 * `:order #` to change fit order.  Default of 4 is probably fine; don't worry too much about excursions on the faint ends of the trace
-* `d` to delete any points biasing the fit
+* `d` to delete any points biasing the fit.  The flux is usually faint at the end, so if this does not
+bias the fit too much don't bother deleting the points. 
 * `s` (twice) to change the sampling region (e.g., to exclude faint ends)
 * `f` to refit
+* `q` to quit
 
-Aim for RMS < 0.07 or so.
+Aim for RMS < 0.07 or so.  
 
 The next screen lets you fit the wavelength solution with IRAF's `autoidentify` and `reidentify`:
 
