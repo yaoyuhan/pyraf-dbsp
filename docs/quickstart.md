@@ -9,13 +9,19 @@ Save a copy of your files in a "raw" directory--this code overwrites the origina
 	mdkir raw
 	cp *.fits raw
 
+#### General user
 
 Start `ipython` and load the script (skip this if you are on Caltech astro network):
 
 	%run /path/to/dbsp.py
 
-For users on the Caltech astro network, log in to any machine and execute: [ENVIRONMENT TO BE SORTED OUT ???????????]
+####  Caltech astro network users
 
+For users on the Caltech astro network, log in to any machine [ENVIRONMENT TO BE SORTED OUT ???????????] and execute:
+
+	cp -r /home/ia/DBSP_pipeline/uparm .
+	mkiraf (important: say no when asked if you want to restart uparm)
+	
 	/usr/local/EPD/epd-7.2.2/bin/ipython
 	%run /home/ia/DBSP_pipeline/dbsp_new.py
 
