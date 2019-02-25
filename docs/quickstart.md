@@ -10,17 +10,14 @@ Save a copy of your files in a "raw" directory--this code overwrites the origina
 	cp *.fits raw
 
 
-Start `ipython` and load the script:
+Start `ipython` and load the script (skip this if you are on Caltech astro network):
 
 	%run /path/to/dbsp.py
 
-For users on the Caltech astro network, log in to soroban and execute: [???????????]
+For users on the Caltech astro network, log in to any machine and execute: [ENVIRONMENT TO BE SORTED OUT ???????????]
 
-	export PATH="/scr/ebellm/anaconda/bin:$PATH"
-	source activate iraf27
-	mkiraf  # choose xgterm
-	ipython 
-	%run /home/ebellm/observing/reduction/dbsp/dbsp.py
+	/usr/local/EPD/epd-7.2.2/bin/ipython
+	%run /home/ia/DBSP_pipeline/dbsp_new.py
 
 Exclude any images that you don't want to analyze (use your log; especially focus/test exposures from the beginning of the night):
 
