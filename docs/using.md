@@ -38,7 +38,9 @@ When IRAF is waiting for your input in the graphics window, you can type `?` to 
 
 Note that commands in the graphics window may require you to click to focus; then you may have to click back to type responses in the terminal.
 
-The first screen allows you to edit the aperture for extracting the spectrum:
+The first screen (shown below) allows you to edit the aperture for extracting the spectrum.
+
+.. image:: aperture.png
 
 * Use `d` to delete trace, `m` to set it
 * `b` to enter background editing

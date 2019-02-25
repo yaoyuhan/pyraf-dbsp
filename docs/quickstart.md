@@ -6,7 +6,7 @@ Complete night reduction:
 
 Save a copy of your files in a "raw" directory--this code overwrites the originals!
 	
-	mdkir raw
+	mkdir raw
 	cp *.fits raw
 
 #### General user
@@ -17,11 +17,11 @@ Start `ipython` and load the script (skip this if you are on Caltech astro netwo
 
 ####  Caltech astro network users
 
-For users on the Caltech astro network, log in to any machine [ENVIRONMENT TO BE SORTED OUT ???????????] and execute:
+For users on the Caltech astro network, log in to any machine and execute:
 
+	cd /path/where/the/data/are
 	cp -r /home/ia/DBSP_pipeline/uparm .
-	mkiraf (important: say no when asked if you want to restart uparm)
-	
+	mkiraf (say 'N' when asked when you want to restart uparm, and 'xgterm' when asked what terminal type)
 	/usr/local/EPD/epd-7.2.2/bin/ipython
 	%run /home/ia/DBSP_pipeline/dbsp_new.py
 
@@ -34,7 +34,8 @@ Create arcs and dome flats (run this after you have at least one science exposur
 
 	create_arc_dome()
 
-Process flux calibration standards, if desired.  If not, skip this step and set `flux=False` in `extract1D()`.
+Process flux calibration standards, if desired.  If not, skip this step and set `flux=False` in `extract1D()`. See
+below for telluric correction on the red side.
 
 	store_standards([41,42,43], side='blue')
 
@@ -44,7 +45,7 @@ Extract data:
 
 For basic telluric correction on the red side, first extract an appropriate telluric calibrator, then pass it to `store_standards` and `extract1D`:
 
-	extract1D(77,side='red', Flux=False)
+	extract1D(77,side='red', flux=False)
 
 	store_standards([41,42,43], side='red', telluric_cal_id = 77)
 
