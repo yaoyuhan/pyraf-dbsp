@@ -22,7 +22,23 @@ All image files are uniquely identified by their `imgID` (an integer number) and
 
 This command should operate automatically and generate several calibration products in the current directory.
 
+
 After running, look at the flats (e.g, `flat_blue_1.0.fits`, `raw_flat_blue_1.0.fits`) in ds9 before continuing to make sure they don't have any weird features.  While rare, these issues are typically the result of science exposures being incorrectly detected as dome flats due to header keyword problems.
+
+
+
+#### Telluric correction for the red side
+For basic telluric correction on the red side, first extract an appropriate telluric calibrator, then pass it to `store_standards` and `extract1D`:
+
+	extract1D(77,side='red', flux=False)
+
+	store_standards([41,42,43], side='red', telluric_cal_id = 77)
+
+	extract1D(63,side='red',flux=True, telluric_cal_id = 77)
+
+Note that the telluric_cal_id should be specified for all sources. 
+		
+#### Store standards
 
 `store_standards()`:
 
@@ -148,25 +164,36 @@ edit bandpasses - say `yes` to enter bandpasses editing.  What you do next depen
 
 use 'd' to delete bandpasses. In this step, you want to remove all bandpasses associated with the Balmer series of absorption lines, as well as those associated with
 helium lines, when these are present (in particular, He I 4471 and He II 4686). We remove these lines, because when fitting out the artifacts in the flux of the standard, we do not want to fit out real features of the standard (as this
-would artificially introduce emission lines at these wavelengths).  Here are images of what a correctly removed line looks like, and what the whole spectrum with
+would artificially introduce emission lines at these wavelengths).  Below are examples of what a correctly removed line looks like, and what the whole spectrum with
 removed lines looks like.
 
 ![text](feige34_delete_line.png)
 ![text](feige34_del_all_lines.png)
 
+When you are done, press `q` and then `enter` (4 times).
+
 #### Red side bandpasses 
+
+The most common lines and tellurics are already automatically deleted.  Check the wings of the lines to check if more points must be deleted.
 
 * `a` `a` (with mouse pointer at two positions) to place new bands
 * `d` to delete bands (on absorption features, say)
 * `q` to quit and save
+
+Below is an example of what a spectrum with automatically removed lines looks like.
+![text](feige34_red.png)
+
+#### Both red and blue sides
 
 You'll define bands for all of your standard exposures, then fit the sensitivity function with IRAF's `sensfunc`.
 
 * `?` for help
 * `s` over graphs to eliminate mean shifts due to non-photometric conditions (toggles)
 * `d` to delete bad points
+* `a` to add points (this is important in case the points are over-fitted and the function "explodes" at the sides or where lines were deleted)
+* `o` Change the order of the fit. IMPORTANT: Use very high order, around 100
 
-Make sure the fitted function doesn't go up after the last points--it will blow up the noise.  Also consider decreasing the order of the fit (`:order 4`) to avoid spline artifacts
+Make sure the fitted function doesn't go up after the last points--it will blow up the noise.  Especially on the red side, add points to go all the way to 10000AA! 
 
 After completing the above steps, the sensitivity function will be defined and you'll be ready to obtain science spectra using `extract1D()`.
 
@@ -174,7 +201,14 @@ After completing the above steps, the sensitivity function will be defined and y
 
 This function combines data from the two spectrograph arms; it can also coadd data in an uncertainty-weighted manner.  The output filenames are taken from the `OBJECT` header keyword.
 
-		
+
+### Reduce science targets 
+
+For science objects 
+extract1D(61,side='blue', redo='yes')
+extract1D(61,side='red',flux=True, telluric_cal_id = 77)
+
+
 ### Tips for on the fly reduction
 
 Start reducing data after you have taken your first standard star exposure.
