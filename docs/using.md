@@ -40,7 +40,7 @@ Note that commands in the graphics window may require you to click to focus; the
 
 The first screen (shown below) allows you to edit the aperture for extracting the spectrum.
 
-.. image:: aperture.png
+![text](aperture.png)
 
 * Use `d` to delete trace, `m` to set it
 * `b` to enter background editing
