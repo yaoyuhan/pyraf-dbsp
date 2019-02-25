@@ -104,6 +104,9 @@ do it for a second line (may already be identified)
 * `f` to fit again
 * `q` twice to save solution
 
+The result of the above steps should look similar to the image below:
+![text](profile.png)
+
 The process above (choose aperture, fit trace, fit/verify dispersion solution) occurs each time you run `extract1D()`.  If the extraction is part of the `store_standards()` call, you'll then continue with the following prompts:
 
 The terminal will prompt: `change wavelength coordinate assignments?`
@@ -122,6 +125,9 @@ fit, `j` to see the residuals (and from here `l` to see the fit), `d` to remove 
 step. 
 
 
+Next, you will be prompted to naming the output sensitifity function files.  You can press `enter` and accept the default names. 
+
+Extinction files: indicate the extinction file name if you wish to use it.  If not (default practice) leave blank and press `enter`.
 
 
 Next, you'll fit throughput functions for the standards; this uses IRAF's `standards`.	
@@ -135,7 +141,20 @@ all of the commonly-used ones are in `onedstds#iidscal`:
 	bd332642
 	bd284211
 	
-edit bandpasses	(choose smooth regions):
+edit bandpasses - say `yes` to enter bandpasses editing.  What you do next depends on whether you are processing the red or blue side
+
+#### Blue side bandpasses
+![text](feige34.png)
+
+use 'd' to delete bandpasses. In this step, you want to remove all bandpasses associated with the Balmer series of absorption lines, as well as those associated with
+helium lines, when these are present (in particular, He I 4471 and He II 4686). We remove these lines, because when fitting out the artifacts in the flux of the standard, we do not want to fit out real features of the standard (as this
+would artificially introduce emission lines at these wavelengths).  Here are images of what a correctly removed line looks like, and what the whole spectrum with
+removed lines looks like.
+
+![text](feige34_delete_line.png)
+![text](feige34_del_all_lines.png)
+
+#### Red side bandpasses 
 
 * `a` `a` (with mouse pointer at two positions) to place new bands
 * `d` to delete bands (on absorption features, say)
