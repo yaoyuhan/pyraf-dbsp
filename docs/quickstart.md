@@ -14,7 +14,7 @@ Start `ipython` and load the script:
 
 	%run /path/to/dbsp.py
 
-For users on the Caltech astro network, log in to soroban and execute:
+For users on the Caltech astro network, log in to soroban and execute: [???????????]
 
 	export PATH="/scr/ebellm/anaconda/bin:$PATH"
 	source activate iraf27
