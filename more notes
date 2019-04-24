@@ -1,0 +1,21 @@
+https://pyraf-dbsp-new.readthedocs.io/en/latest/quickstart.html
+
+sometimes airmass keyword can be missing:
+
+do:
+import glob
+from astropy.io import fits
+import pyfits
+myfiles = glob.glob("*.fits")
+for myfile in myfiles:
+     try:
+         hd = fits.open(myfile)[0].header
+         airmass = hd['AIRMASS']
+     except Exception:
+         print (myfile)
+         pyfits.setval(myfile, 'AIRMASS', value=1.0)
+         
+         
+create_arc_dome()
+store_standards([34,71,72], side='blue')
+change wavelength coordinate assignments? no
