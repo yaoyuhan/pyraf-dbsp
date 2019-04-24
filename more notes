@@ -1,5 +1,12 @@
 https://pyraf-dbsp-new.readthedocs.io/en/latest/quickstart.html
 
+
+cd reduced
+cp -r /home/ia/DBSP_pipeline/uparm .
+mkiraf 
+/usr/local/EPD/epd-7.2.2/bin/ipython
+run /home/ia/DBSP_pipeline/dbsp_new.py
+
 sometimes airmass keyword can be missing:
 
 do:
@@ -9,8 +16,7 @@ import pyfits
 myfiles = glob.glob("*.fits")
 for myfile in myfiles:
      try:
-         hd = fits.open(myfile)[0].header
-         airmass = hd['AIRMASS']
+         airmass = fits.open(myfile)[0].header['AIRMASS']
      except Exception:
          print (myfile)
          pyfits.setval(myfile, 'AIRMASS', value=1.0)
@@ -19,3 +25,19 @@ for myfile in myfiles:
 create_arc_dome()
 store_standards([34,71,72], side='blue')
 change wavelength coordinate assignments? no
+
+extract1D(34,side='red', flux=False)
+store_standards([71, 72], side='red', telluric_cal_id = 34)
+
+iraf plot zoom in: w e a
+
+extract1D(35,side='blue')
+extract1D(35, side='red', flux=True, telluric_cal_id = 34)
+combine_sides([35],[35])
+
+extract1D(38,side='blue')
+extract1D(38, side='red', flux=True, telluric_cal_id = 34)
+
+combine_sides([38],[38])
+
+
