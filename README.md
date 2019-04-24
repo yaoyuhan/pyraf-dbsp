@@ -14,3 +14,7 @@ ASCL entry: [2016ascl.soft02002B](http://adsabs.harvard.edu/abs/2016ascl.soft020
 
 ### yuhan's notes:
 first import pyraf, and then run dbsp python script
+
+rsync -avz user1@observer1.palomar.caltech.edu:/remote/instrument7/DBSP/20190424/  /Users/yuhanyao/Documents/DBSP/20190424/
+rsync -avz /Users/yuhanyao/Documents/DBSP/20190424/ yyao@pathos.caltech.edu:DBSP/20190424/raw/
+on gayatri: rsync -avz raw/ reduced/
