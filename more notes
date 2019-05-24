@@ -42,7 +42,10 @@ for x in myfiles:
      pyfits.setval(x, 'IMGTYPE', value="flat")
          
 create_arc_dome()
-wea
+
+# blue side standard
+store_standards([46], side='blue')
+
 change wavelength coordinate assignments? yes!
 zoom in: w x
 zoom out: w a
@@ -50,138 +53,61 @@ Balmer series:
 H_list = [3734.369, 3750.151, 3770.633, 3797.909, 3835.397, 3889.064, 3970.075, 4101.734, 4340.472, 4861.35]
 
 # Telluric correction for the red side
-extract1D(71, side='red', flux=False)
-store_standards([34], side='red', telluric_cal_id = 71)
+extract1D(40, side='red', flux=False)
+store_standards([49], side='red', telluric_cal_id = 40)
 
 iraf plot zoom in: w e a
 
+# ZTF19aaoikti
+extract1D(34, side='blue')
+extract1D(34, side='red', flux=True, telluric_cal_id = 40)
+
 extract1D(35,side='blue')
-extract1D(35, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([35],[35])
+extract1D(35, side='red', flux=True, telluric_cal_id = 40)
+combine_sides([34, 35], [34, 35])
 
+# ZTF18aaykjei_h
 extract1D(36,side='blue')
-extract1D(36, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([36],[36])
+extract1D(36, side='red', flux=True, telluric_cal_id = 40)
+extract1D(37, side='red', flux=True, telluric_cal_id = 40)
+combine_sides([36],[36,37])
 
+# ZTF19aauihxr
 extract1D(37,side='blue')
-extract1D(37, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([36,37],[36,37])
-
 extract1D(38,side='blue')
-extract1D(38, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([38],[38])
+extract1D(38, side='red', flux=True, telluric_cal_id = 40)
+extract1D(39, side='red', flux=True, telluric_cal_id = 40)
+combine_sides([37,38],[38,39])
 
-extract1D(39,side='blue')
-extract1D(39, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([39],[39])
-
+# ZTF19aarphwc
 extract1D(40,side='blue')
-extract1D(40, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([40],[40])
+extract1D(42, side='red', flux=True, telluric_cal_id = 40)
+combine_sides([40],[42])
 
+# ZTF19aanuuen
 extract1D(41,side='blue')
-extract1D(41, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([41],[41])
-
 extract1D(42,side='blue')
-extract1D(42, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([42],[42])
+extract1D(43, side='red', flux=True, telluric_cal_id = 40)
+extract1D(44, side='red', flux=True, telluric_cal_id = 40)
+combine_sides([41,42],[43,44])
 
+# ZTF18absdgon_h
 extract1D(43,side='blue')
-extract1D(43, side='red', flux=True, telluric_cal_id = 71)
-extract1D(44,side='blue')
-extract1D(44, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([43,44],[43,44])
+extract1D(45, side='red', flux=True, telluric_cal_id = 40)
+combine_sides([43],[45])
 
-extract1D(45,side='blue')
-extract1D(45, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([45],[45])
+# iPTF16geu
+extract1D(44,side='blue') # no trace at all
+extract1D(46, side='red', flux=True, telluric_cal_id = 40)
+extract1D(47, side='red', flux=True, telluric_cal_id = 40)
+combine_sides([44],[46,47])
 
-extract1D(46, side='blue')
-extract1D(46, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([46],[46])
+# ZTF19aamrais
+extract1D(45, side='blue')
+extract1D(48, side='red', flux=True, telluric_cal_id = 40)
+combine_sides([45],[48])
 
-extract1D(47, side='blue')
-extract1D(47, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([47],[47])
-
-extract1D(48, side='blue')
-extract1D(48, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([48],[48])
-
-extract1D(49, side='blue')
-extract1D(49, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([49],[49])
-
-extract1D(50, side='blue')
-extract1D(50, side='red', flux=True, telluric_cal_id = 71)
-extract1D(51, side='blue')
-extract1D(51, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([50,51],[50,51])
-
-extract1D(53, side='blue')
-extract1D(53, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([53],[53])
-
-extract1D(54, side='blue')
-extract1D(54, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([54],[54])
-
-extract1D(55, side='blue')
-extract1D(55, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([55],[55])
-
-extract1D(56, side='blue')
-extract1D(56, side='red', flux=True, telluric_cal_id = 71)
-extract1D(57, side='blue')
-extract1D(57, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([56,57],[56,57])
-
-extract1D(58, side='blue')
-extract1D(58, side='red', flux=True, telluric_cal_id = 71)
-extract1D(59, side='blue')
-extract1D(59, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([59],[59])
-
-extract1D(60, side='blue')
-extract1D(60, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([60],[60])
-
-extract1D(61,side='blue')
-extract1D(61, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([61],[61])
-
-extract1D(62,side='blue')
-extract1D(62, side='red', flux=True, telluric_cal_id = 71)
-extract1D(63,side='blue')
-extract1D(63, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([62,63],[62,63])
-
-extract1D(64,side='blue')
-extract1D(64, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([64],[64])
-
-extract1D(65,side='blue')
-extract1D(65, side='red', flux=True, telluric_cal_id = 71)
-extract1D(66,side='blue')
-extract1D(66, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([65,66],[65,66])
-
-extract1D(67,side='blue')
-extract1D(67, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([67],[67])
-
-extract1D(68,side='blue')
-extract1D(68, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([68],[68])
-
-extract1D(69,side='blue')
-extract1D(69, side='red', flux=True, telluric_cal_id = 71)
-extract1D(70,side='blue')
-extract1D(70, side='red', flux=True, telluric_cal_id = 71)
-combine_sides([69,70],[69,70])
-
-
-combine_sides([38],[38])
-
-
+# ZTF18abeecwe_h
+extract1D(47, side='blue') # seems to be the wrong trace
+extract1D(50, side='red', flux=True, telluric_cal_id = 40)
+combine_sides([47],[50])
