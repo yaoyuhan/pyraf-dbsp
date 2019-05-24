@@ -28,9 +28,21 @@ for myfile in myfiles:
          print (myfile)
          pyfits.setval(myfile, 'AIRMASS', value=1.0)
          
+sometimes the header info are wrongly set
+fits.open("red0012.fits")[0].header['IMGTYPE']
+
+myfiles = glob.glob("red*.fits")
+myfiles = np.array(myfiles)
+myfiles = myfiles[np.argsort(myfiles)]
+myfiles = myfiles[12:]
+myfiles = myfiles[:-19]
+for x in myfiles:
+     print (fits.open(x)[0].header['IMGTYPE'])
+for x in myfiles:
+     pyfits.setval(x, 'IMGTYPE', value="flat")
          
 create_arc_dome()
-store_standards([34], side='blue')
+wea
 change wavelength coordinate assignments? yes!
 
 # Telluric correction for the red side
