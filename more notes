@@ -44,6 +44,10 @@ for x in myfiles:
 create_arc_dome()
 wea
 change wavelength coordinate assignments? yes!
+zoom in: w x
+zoom out: w a
+Balmer series:
+H_list = [3734.369, 3750.151, 3770.633, 3797.909, 3835.397, 3889.064, 3970.075, 4101.734, 4340.472, 4861.35]
 
 # Telluric correction for the red side
 extract1D(71, side='red', flux=False)
