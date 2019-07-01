@@ -193,6 +193,35 @@ extract1D(71, side='red', flux=True, telluric_cal_id = 69)
 combine_sides([63], [71])
 ZTF19aawfbtg_63+71.spec.fits
 
+# ZTF19aayqait blue 64; red 72-73
+extract1D(64, side='blue')
+extract1D(72, side='red', flux=True, telluric_cal_id = 69)
+extract1D(73, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([64], [72, 73])
+
+# ZTF19aawblge blue 65; red 74-75
+extract1D(65, side='blue')
+extract1D(74, side='red', flux=True, telluric_cal_id = 69)
+extract1D(75, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([65], [74, 75])
+
+# ZTF19aaycrgf blue 66; red 76
+extract1D(66, side='blue')
+extract1D(76, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([66], [76])
+
+# ZTF19aavvygo blue 67; red 77-78
+extract1D(67, side='blue')
+extract1D(77, side='red', flux=True, telluric_cal_id = 69)
+extract1D(78, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([67], [77, 78])
+
+# ZTF19aaywatp blue 68-69; red 79-80
+extract1D(68, side='blue')
+extract1D(79, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([68], [79])
+
+
 
 
 
