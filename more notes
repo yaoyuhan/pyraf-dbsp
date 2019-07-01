@@ -2,15 +2,14 @@ https://pyraf-dbsp-new.readthedocs.io/en/latest/quickstart.html
 
 first import pyraf, and then run dbsp python script
 
-rsync -avz user1@observer1.palomar.caltech.edu:/remote/instrument7/DBSP/20190424/  /Users/yuhanyao/Documents/DBSP/20190424/
-rsync -avz /Users/yuhanyao/Documents/DBSP/20190424/ yyao@pathos.caltech.edu:DBSP/20190424/raw/
+rsync -avz user1@observer1.palomar.caltech.edu:/remote/instrument7/DBSP/20190701/  /Users/yuhanyao/Documents/DBSP/20190701/
+rsync -avz /Users/yuhanyao/Documents/DBSP/20190701/ yyao@gayatri.caltech.edu:DBSP/20190701/raw/
 on gayatri: rsync -avz raw/ reduced/
-
-rsync -avz yyao@gayatri.caltech.edu:DBSP/20190424/reduced/ reduced/
 
 cd reduced
 cp -r /home/ia/DBSP_pipeline/uparm .
 mkiraf 
+(say 'n' when asked when you want to restart uparm, and 'xgterm' when asked what terminal type)
 /usr/local/EPD/epd-7.2.2/bin/ipython
 run /home/ia/DBSP_pipeline/dbsp_new.py
 
@@ -27,7 +26,7 @@ for myfile in myfiles:
      except Exception:
          print (myfile)
          pyfits.setval(myfile, 'AIRMASS', value=1.0)
-         
+'''        
 sometimes the header info are wrongly set
 fits.open("red0012.fits")[0].header['IMGTYPE']
 
@@ -40,11 +39,25 @@ for x in myfiles:
      print (fits.open(x)[0].header['IMGTYPE'])
 for x in myfiles:
      pyfits.setval(x, 'IMGTYPE', value="flat")
-         
+'''   
+sometimes need to remove some file (13--17.fits)
+
+mask pointing exposure
+mark_bad([13,14,15,16,17,38],side='red')
+mark_bad([13,14,15,16,17,38],side='blue')
+
 create_arc_dome()
 
+######## ============== Under the folder of reduced1/
+
+# Telluric correction for the red side
+extract1D(47, side='red', flux=False)
+store_standards([48], side='red', telluric_cal_id = 47)
+
+iraf plot zoom in: w e a
+
 # blue side standard
-store_standards([46], side='blue')
+store_standards([44], side='blue')
 
 change wavelength coordinate assignments? yes!
 zoom in: w x
@@ -52,62 +65,134 @@ zoom out: w a
 Balmer series:
 H_list = [3734.369, 3750.151, 3770.633, 3797.909, 3835.397, 3889.064, 3970.075, 4101.734, 4340.472, 4861.35]
 
-# Telluric correction for the red side
-extract1D(40, side='red', flux=False)
-store_standards([49], side='red', telluric_cal_id = 40)
+# ZTF19aavxgur blue 46-47; red 50-51
+extract1D(46, side='blue')
+extract1D(47, side='blue')
+extract1D(50, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([46, 47], [50, 51])
+ZTF19aavxgur_46-47+50-51.spec.fits
 
-iraf plot zoom in: w e a
-
-# ZTF19aaoikti
-extract1D(34, side='blue')
-extract1D(34, side='red', flux=True, telluric_cal_id = 40)
-
-extract1D(35,side='blue')
-extract1D(35, side='red', flux=True, telluric_cal_id = 40)
-combine_sides([34, 35], [34, 35])
-
-# ZTF18aaykjei_h
-extract1D(36,side='blue')
-extract1D(36, side='red', flux=True, telluric_cal_id = 40)
-extract1D(37, side='red', flux=True, telluric_cal_id = 40)
-combine_sides([36],[36,37])
-
-# ZTF19aauihxr
-extract1D(37,side='blue')
-extract1D(38,side='blue')
-extract1D(38, side='red', flux=True, telluric_cal_id = 40)
-extract1D(39, side='red', flux=True, telluric_cal_id = 40)
-combine_sides([37,38],[38,39])
-
-# ZTF19aarphwc
-extract1D(40,side='blue')
-extract1D(42, side='red', flux=True, telluric_cal_id = 40)
-combine_sides([40],[42])
-
-# ZTF19aanuuen
-extract1D(41,side='blue')
-extract1D(42,side='blue')
-extract1D(43, side='red', flux=True, telluric_cal_id = 40)
-extract1D(44, side='red', flux=True, telluric_cal_id = 40)
-combine_sides([41,42],[43,44])
-
-# ZTF18absdgon_h
-extract1D(43,side='blue')
-extract1D(45, side='red', flux=True, telluric_cal_id = 40)
-combine_sides([43],[45])
-
-# iPTF16geu
-extract1D(44,side='blue') # no trace at all
-extract1D(46, side='red', flux=True, telluric_cal_id = 40)
-extract1D(47, side='red', flux=True, telluric_cal_id = 40)
-combine_sides([44],[46,47])
-
-# ZTF19aamrais
+# ZTF19aavkvpw blue 45; red 49
 extract1D(45, side='blue')
-extract1D(48, side='red', flux=True, telluric_cal_id = 40)
-combine_sides([45],[48])
+extract1D(49, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([45], [49])
+ZTF19aavkvpw_45+49.spec.fits
 
-# ZTF18abeecwe_h
-extract1D(47, side='blue') # seems to be the wrong trace
-extract1D(50, side='red', flux=True, telluric_cal_id = 40)
-combine_sides([47],[50])
+# ZTF19aavnwzv blue 42-43; red 45-46
+extract1D(42, side='blue')
+extract1D(43, side='blue')
+extract1D(45, side='red', flux=True, telluric_cal_id = 47)
+extract1D(46, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([42, 43], [45, 46])
+ZTF19aavnwzv_42-43+45-46.spec.fits
+
+# ZTF19aauhhjy blue 41; red 43-44
+extract1D(41, side='blue')
+extract1D(43, side='red', flux=True, telluric_cal_id = 47)
+extract1D(44, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([41], [43, 44])
+ZTF19aauhhjy_41+43-44.spec.fits
+
+# ZTF18aadbtae blue 40; red 41-42
+extract1D(40, side='blue')
+extract1D(41, side='red', flux=True, telluric_cal_id = 47)
+extract1D(42, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([40], [41, 42])
+ZTF18aadbtae_40+41-42.spec.fits
+
+# ZTF19aaxqivq blue 39; red 39-40
+extract1D(39, side='blue')
+extract1D(40, side='red', flux=True, telluric_cal_id = 47)
+extract1D(41, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([], [40, 41])
+#### note: no trace on the blue side!
+ZTF19aaxqivq_39+40-41.spec.fits
+
+######## ============== Under the folder of reduced/
+extract1D(69, side='red', flux=False)
+store_standards([70], side='red', telluric_cal_id = 69)
+store_standards([62], side='blue')
+
+# ZTF19aaznwze blue 48; red 52
+extract1D(48, side='blue')
+extract1D(52, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([48], [52])
+ZTF19aaznwze_48+52.spec.fits
+
+# ZTF19aaxeerg blue: 49-50; red 53-54
+extract1D(49, side='blue')
+extract1D(50, side='blue')
+extract1D(53, side='red', flux=True, telluric_cal_id = 69)
+extract1D(54, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([49, 50], [53, 54])
+ZTF19aaxeerg_49-50+53-54.spec.fits
+
+# ZTF19aavouyw blue 51; red 55-56
+extract1D(51, side='blue')
+extract1D(55, side='red', flux=True, telluric_cal_id = 69)
+extract1D(56, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([51], [55, 56])
+ZTF19aavouyw_51+55-56.spec.fit
+
+# ZTF19abacxod blue 52; red 57
+extract1D(52, side='blue')
+extract1D(57, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([52], [57])
+ZTF19abacxod_52+57.spec.fits
+
+# ZTF19abaexlf blue 53-54; red 58-59
+extract1D(53, side='blue')
+extract1D(54, side='blue')
+extract1D(58, side='red', flux=True, telluric_cal_id = 69)
+extract1D(59, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([53, 54], [58, 59])
+ZTF19abaexlf_53-54+58-59.spec.fits # too faint
+
+# ZTF19aayejww blue 55-56; red 60-61
+extract1D(55, side='blue')
+extract1D(56, side='blue')
+extract1D(60, side='red', flux=True, telluric_cal_id = 69)
+extract1D(61, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([55, 56], [60, 61])
+ZTF19aayejww_55-56+60-61.spec.fits
+
+# ZTF19aaxfcpq blue 57; red 62
+extract1D(57, side='blue')
+extract1D(62, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([57], [62])
+ZTF19aaxfcpq_57+62.spec.fits
+
+# ZTF19aaxqwjx blue 58; red 63-64
+extract1D(58, side='blue')
+extract1D(63, side='red', flux=True, telluric_cal_id = 69)
+extract1D(64, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([58], [63, 64])
+ZTF19aaxfqwjx_58+63-64.spec.fits
+
+# ZTF19abavwqc blue 59; red 65-66
+extract1D(59, side='blue')
+extract1D(65, side='red', flux=True, telluric_cal_id = 69)
+extract1D(66, side='red', flux=True, telluric_cal_id = 69)
+# no trace, no output
+
+# ZTF19abbvzgr blue 60; red 67
+extract1D(60, side='blue')
+extract1D(67, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([60], [67])
+ZTF19abbvzgr_60+67.spec.fits
+
+# ZTF19aawqcgy blue 61; red 68
+extract1D(61, side='blue')
+extract1D(68, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([61], [68])
+ZTF19aawqcgy_61+68.spec.fits
+
+# ZTF19aawfbtg blue 63; red 71
+extract1D(63, side='blue')
+extract1D(71, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([63], [71])
+ZTF19aawfbtg_63+71.spec.fits
+
+
+
+
