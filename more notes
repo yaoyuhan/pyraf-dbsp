@@ -65,12 +65,6 @@ zoom out: w a
 Balmer series:
 H_list = [3734.369, 3750.151, 3770.633, 3797.909, 3835.397, 3889.064, 3970.075, 4101.734, 4340.472, 4861.35]
 
-# ZTF19aavxgur blue 46-47; red 50-51
-extract1D(46, side='blue')
-extract1D(47, side='blue')
-extract1D(50, side='red', flux=True, telluric_cal_id = 47)
-combine_sides([46, 47], [50, 51])
-ZTF19aavxgur_46-47+50-51.spec.fits
 
 # ZTF19aavkvpw blue 45; red 49
 extract1D(45, side='blue')
@@ -112,6 +106,14 @@ ZTF19aaxqivq_39+40-41.spec.fits
 extract1D(69, side='red', flux=False)
 store_standards([70], side='red', telluric_cal_id = 69)
 store_standards([62], side='blue')
+
+# ZTF19aavxgur blue 46-47; red 50-51
+extract1D(46, side='blue')
+extract1D(47, side='blue')
+extract1D(50, side='red', flux=True, telluric_cal_id = 69)
+extract1D(51, side='red', flux=True, telluric_cal_id = 69)
+combine_sides([46, 47], [50, 51])
+ZTF19aavxgur_46-47+50-51.spec.fits
 
 # ZTF19aaznwze blue 48; red 52
 extract1D(48, side='blue')
