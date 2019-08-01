@@ -67,83 +67,83 @@ Balmer series:
 H_list = [3734.369, 3750.151, 3770.633, 3797.909, 3835.397, 3889.064, 3970.075, 4101.734, 4340.472, 4861.35]
 
 
-# ZTF19abfarpa blue 39; red 40-41
+# ZTF19abfarpa blue 39; red 40-41 # uploaded and nice
 extract1D(39, side='blue')
 extract1D(40, side='red', flux=True, telluric_cal_id = 35)
 extract1D(41, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([39], [40,41])
 Very low SNR
 
-# ZTF19abcgdoz blue 40; red 42-43
+# ZTF19abcgdoz blue 40; red 42-43 # uploaded and nice and classified
 extract1D(40, side='blue')
 extract1D(42, side='red', flux=True, telluric_cal_id = 35)
 extract1D(43, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([40], [42, 43])
-This is on top of a galaxy, and already very faint. Not sure there's much transient light in the spectrum
 
-# ZTF19abdlzyq blue 41; red 44-45
+# ZTF19abdlzyq blue 41; red 44-45 # uploaded and nice
 extract1D(41, side='blue')
 extract1D(44, side='red', flux=True, telluric_cal_id = 35)
 extract1D(45, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([41], [44, 45])
 
-
-# ZTF19aaxfcpq blue 44; red 50-51
+# ZTF19aaxfcpq blue 44; red 50-51; uploaded and nice
 extract1D(44, side='blue')
 extract1D(50, side='red', flux=True, telluric_cal_id = 35)
 extract1D(51, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([44], [50, 51])
 
-# ZTF19abgpgyp blue 47; red 56-57
+# ZTF19abgpgyp blue 47; red 56-57; uploaded and nice
 extract1D(47, side='blue')
 extract1D(56, side='red', flux=True, telluric_cal_id = 35)
 extract1D(57, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([47], [56, 57])
 
-# ZTF19aaniqrr blue 48; red 58-59
+# ZTF19aaniqrr blue 48; red 58-59=; uploaded and nice
 extract1D(48, side='blue')
 extract1D(58, side='red', flux=True, telluric_cal_id = 35)
 extract1D(59, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([48], [58, 59])
 
-# ZTF19aayclnm blue 49; red 60-61
+# ZTF19aayclnm blue 49; red 60-61; # uploaded and nice
 extract1D(49, side='blue')
 extract1D(60, side='red', flux=True, telluric_cal_id = 35)
 extract1D(61, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([49], [60, 61])
 
-# ZTF19aawqgcy blue 51; red 64-65
+# ZTF19aawqgcy blue 51; red 64-65 # ?
 extract1D(51, side='blue')
 extract1D(64, side='red', flux=True, telluric_cal_id = 35)
 extract1D(65, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([49], [60, 61])
 not done because the trace is wierd and I cannot see the data on Marshal
 
-# ZTF19abitskw blue 57; red 72-73
+# ZTF19abitskw blue 57; red 72-73c # uploaded but not very good ?
 extract1D(57, side='blue')
 extract1D(72, side='red', flux=True, telluric_cal_id = 35)
 extract1D(73, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([57], [72, 73])
+Anyway, that's the best I can do...
 
-# ZTF19abgqruu blue 59; red 76-77
+# ZTF19abgqruu blue 59; red 76-77 # uploaded and nice
 extract1D(59, side='blue')
 extract1D(76, side='red', flux=True, telluric_cal_id = 35)
 extract1D(77, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([59], [76, 77])
 
-# ZTF19abkfmjp blue 60; red 78-79
+# ZTF19abkfmjp blue 60; red 78-79 # uploaded and nice
 extract1D(60, side='blue')
 extract1D(78, side='red', flux=True, telluric_cal_id = 35)
 extract1D(79, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([60], [78, 79])
+There is really not much that I can do. This guy is on top of the host.
 
-# ZTF19aayvylv blue 61; red 80-81
+# ZTF19aayvylv blue 61; red 80-81 # uploaded and nice and classified
 extract1D(61, side='blue')
 extract1D(80, side='red', flux=True, telluric_cal_id = 35)
 extract1D(81, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([61], [80, 81])
 
-# ZTF19abdkcye blue 62; red 82-83
+# ZTF19abdkcye blue 62; red 82-83 # uploaded and nice
 extract1D(62, side='blue')
 extract1D(82, side='red', flux=True, telluric_cal_id = 35)
 extract1D(83, side='red', flux=True, telluric_cal_id = 35)
