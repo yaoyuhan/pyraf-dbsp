@@ -110,11 +110,12 @@ extract1D(60, side='red', flux=True, telluric_cal_id = 35)
 extract1D(61, side='red', flux=True, telluric_cal_id = 35)
 combine_sides([49], [60, 61])
 
-# ZTF19aawqgcy blue 51; red 64-65 # ?
-extract1D(51, side='blue')
+# ZTF19aawqcgy blue 51; red 64-65 # ?
+#####################################
+extract1D(51, side='blue', redo='yes')
 extract1D(64, side='red', flux=True, telluric_cal_id = 35)
 extract1D(65, side='red', flux=True, telluric_cal_id = 35)
-combine_sides([49], [60, 61])
+combine_sides([51], [64, 65])
 not done because the trace is wierd and I cannot see the data on Marshal
 
 # ZTF19abitskw blue 57; red 72-73c # uploaded but not very good ?
