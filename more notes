@@ -3,8 +3,8 @@ https://pyraf-dbsp-new.readthedocs.io/en/latest/using.html
 
 first import pyraf, and then run dbsp python script
 
-rsync -avz user1@observer1.palomar.caltech.edu:/remote/instrument7/DBSP/20191003/  /Users/yuhanyao/Documents/DBSP/20191003/
-rsync -avz /Users/yuhanyao/Documents/DBSP/20191003/ yyao@gayatri.caltech.edu:DBSP/20191003/raw/
+rsync -avz user1@observer1.palomar.caltech.edu:/remote/instrument7/DBSP/20191005/  /Users/yuhanyao/Documents/DBSP/20191005/
+rsync -avz /Users/yuhanyao/Documents/DBSP/20191005/ yyao@gayatri.caltech.edu:DBSP/20191005/raw/
 on gayatri: rsync -avz raw/ reduced/
 
 cd reduced
@@ -44,15 +44,29 @@ for x in myfiles:
 sometimes need to remove some file (13--17.fits)
 
 mask pointing exposure
-mark_bad([11],side='red')
+mark_bad([1],side='red')
+mark_bad([1],side='blue')
 
 create_arc_dome()
+
+extract1D(38, side='blue', arc="blue0039.fits", redo='yes')
+extract1D(38, side='red', arc="red0039.fits", redo='yes', flux=True, telluric_cal_id = 35)
+combine_sides([38], [38])
+
+try36
+extract1D(36, side='red', flux=False)
+store_standards([35], side='red', telluric_cal_id = 36) 
+store_standards([35,36], side='blue', redo='yes')
+
+extract1D(38, side='blue', arc="blue0040.fits", redo='yes')
+extract1D(38, side='red', arc="red0040.fits", redo='yes', flux=True, telluric_cal_id = 36)
+combine_sides([38], [38])
 
 ######## ============== Under the folder of reduced1/
 
 # Telluric correction for the red side
-extract1D(45, side='red', flux=False) # don't need to click lots of things in this step.
-store_standards([36], side='red', telluric_cal_id = 45) # click lots of things in this step
+extract1D(36, side='red', flux=False) # don't need to click lots of things in this step.
+store_standards([35], side='red', telluric_cal_id = 36) # click lots of things in this step
 
 iraf plot zoom in: w e a
 
