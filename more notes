@@ -49,6 +49,15 @@ mark_bad([1],side='blue')
 
 create_arc_dome()
 
+#################
+20191221: BH candidate for PM
+
+Using calib files from IA
+Sill need to do standard by myself
+store_standards([66], side='blue', redo='yes', arc="FeAr_1.0.fits")
+
+#################
+
 extract1D(38, side='blue', arc="blue0039.fits", redo='yes')
 extract1D(38, side='red', arc="red0039.fits", redo='yes', flux=True, telluric_cal_id = 35)
 combine_sides([38], [38])
