@@ -90,6 +90,27 @@ combine_sides([48], [48])
 # BH03
 extract1D(50, side='blue', arc="blue0049.fits", redo='yes', reextract=True)
 extract1D(50, side='red', arc="red0049.fits", redo='yes', reextract=True)
+combine_sides([50], [50])
+
+# BH07
+extract1D(62, side='blue', arc="blue0063.fits", redo='yes', reextract=True)
+extract1D(62, side='red', arc="red0063.fits", redo='yes', reextract=True)
+combine_sides([62], [62])
+
+# BH12
+extract1D(67, side='blue', arc="blue0068.fits", redo='yes', reextract=True)
+extract1D(70, side='red', arc="red0071.fits", redo='yes', reextract=True)
+combine_sides([67], [70])
+
+# BH09
+extract1D(80, side='blue', arc="blue0081.fits", redo='yes', reextract=True)
+extract1D(88, side='red', arc="red0089.fits", redo='yes', reextract=True)
+combine_sides([80], [88])
+
+# BH10
+extract1D(82, side='blue', arc="blue0081.fits", redo='yes', reextract=True)
+extract1D(90, side='red', arc="red0089.fits", redo='yes', reextract=True)
+combine_sides([82], [90])
 
 #################
 
