@@ -41,56 +41,34 @@ for x in myfiles:
 for x in myfiles:
      pyfits.setval(x, 'IMGTYPE', value="flat")
 '''   
-sometimes need to remove some file (13--17.fits)
-
-mask pointing exposure
-mark_bad([1],side='red')
-mark_bad([1],side='blue')
-
 create_arc_dome()
 
 #################
-20191221: BH candidate for PM
 
-rm red0069.fits
-create_arc_dome(arcslit='1.0')
+# 20200101
+store_standards([46], side='blue', redo='yes')
+extract1D(47, side='red', flux=False, redo='yes')
+store_standards([48], side='red', telluric_cal_id = 47, redo='yes')
 
-Using calib files from IA
-Sill need to do standard by myself
-
-### Standard Star
-store_standards([66], side='blue', redo='yes', arc="FeAr_1.0.fits")
-
-extract1D(68, side='red', flux=False, redo='yes', arc="HeNeAr_1.0.fits")
-store_standards([68], side='red', telluric_cal_id = 68, redo='yes', arc="HeNeAr_1.0.fits")
-
-myfiles = glob.glob("*.fits")
-myfiles = myfiles[:-22]
-
-for myfiles in myfiles:
-    hdu = fits.open(myfiles)[0]
-    header = hdu.header
-    print (header["UTSHUT"])
-    
 # BH06
-extract1D(45, side='blue', arc="blue0046.fits", redo='yes', reextract=True)
-extract1D(45, side='red', arc="red0046.fits", redo='yes', reextract=True)
-combine_sides([45], [45])
+extract1D(47, side='blue', arc="blue0048.fits", redo='yes', reextract=True)
+extract1D(49, side='red', arc="red0050.fits", redo='yes', reextract=True, telluric_cal_id = 47)
+combine_sides([47], [49])
 
 # BH02
-extract1D(47, side='blue', arc="blue0046.fits", redo='yes', reextract=True)
-extract1D(47, side='red', arc="red0046.fits", redo='yes', reextract=True)
-combine_sides([47], [47])
-
-# BH11
-extract1D(48, side='blue', arc="blue0049.fits", redo='yes', reextract=True)
-extract1D(48, side='red', arc="red0049.fits", redo='yes', reextract=True)
-combine_sides([48], [48])
+extract1D(49, side='blue', arc="blue0048.fits", redo='yes', reextract=True)
+extract1D(51, side='red', arc="red0050.fits", redo='yes', reextract=True, telluric_cal_id = 47)
+combine_sides([49], [51])
 
 # BH03
-extract1D(50, side='blue', arc="blue0049.fits", redo='yes', reextract=True)
-extract1D(50, side='red', arc="red0049.fits", redo='yes', reextract=True)
-combine_sides([50], [50])
+extract1D(52, side='blue', arc="blue0053.fits", redo='yes', reextract=True)
+extract1D(54, side='red', arc="red0055.fits", redo='yes', reextract=True, telluric_cal_id = 47)
+combine_sides([52], [54])
+
+# BH11
+extract1D(54, side='blue', arc="blue0053.fits", redo='yes', reextract=True)
+extract1D(56, side='red', arc="red0055.fits", redo='yes', reextract=True, telluric_cal_id = 47)
+combine_sides([54], [56])
 
 # BH07
 extract1D(62, side='blue', arc="blue0063.fits", redo='yes', reextract=True)
@@ -98,8 +76,8 @@ extract1D(62, side='red', arc="red0063.fits", redo='yes', reextract=True)
 combine_sides([62], [62])
 
 # BH12
-extract1D(67, side='blue', arc="blue0068.fits", redo='yes', reextract=True)
-extract1D(70, side='red', arc="red0071.fits", redo='yes', reextract=True)
+extract1D(65, side='blue', arc="blue0066.fits", redo='yes', reextract=True)
+extract1D(72, side='red', arc="red0073.fits", redo='yes', reextract=True, telluric_cal_id = 47)
 combine_sides([67], [70])
 
 # BH09
@@ -114,199 +92,160 @@ combine_sides([82], [90])
 
 #################
 
-extract1D(38, side='blue', arc="blue0039.fits", redo='yes')
-extract1D(38, side='red', arc="red0039.fits", redo='yes', flux=True, telluric_cal_id = 35)
-combine_sides([38], [38])
-
-try36
-extract1D(36, side='red', flux=False)
-store_standards([35], side='red', telluric_cal_id = 36) 
-store_standards([35,36], side='blue', redo='yes')
-
-extract1D(38, side='blue', arc="blue0040.fits", redo='yes')
-extract1D(38, side='red', arc="red0040.fits", redo='yes', flux=True, telluric_cal_id = 36)
-combine_sides([38], [38])
-
-######## ============== Under the folder of reduced1/
-
-# Telluric correction for the red side
-extract1D(36, side='red', flux=False) # don't need to click lots of things in this step.
-store_standards([35], side='red', telluric_cal_id = 36) # click lots of things in this step
-
-iraf plot zoom in: w e a
-
-# blue side standard
-store_standards([35,42], side='blue', redo='yes')
-
-change wavelength coordinate assignments? yes!
-zoom in: w x
-zoom out: w a
-Balmer series:
-H_list = [3734.369, 3750.151, 3770.633, 3797.909, 3835.397, 3889.064, 3970.075, 4101.734, 4340.472, 4861.35]
-
-
-# ZTF19abvkfjd blue 36; red 37 # uploaded and nice
-extract1D(36, side='blue')
-extract1D(37, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([36], [37])
-Very low SNR
-
-# ZTF19aapreis blue 37; red 38-39 # uploaded and nice and classified
-extract1D(37, side='blue')
-extract1D(38, side='red', flux=True, telluric_cal_id = 45)
-extract1D(39, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([37], [38, 39])
-
-# ZTF18acaqdaa blue 38; red 40-41 # uploaded and nice
-extract1D(38, side='blue')
-extract1D(40, side='red', flux=True, telluric_cal_id = 45)
-extract1D(41, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([38], [40, 41])
-
-# ZTF19abxekxi blue 39; red 42; uploaded and nice
-extract1D(39, side='blue')
-extract1D(42, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([39], [42])
-
-# PGIRN19brv blue 41; red 44; uploaded and nice
-extract1D(41, side='blue')
-extract1D(44, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([41], [44])
-
-# ZTF19abzkexb blue 44; red 47; uploaded and nice
-extract1D(44, side='blue')
-extract1D(47, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([44], [47])
-
-# ZTF19acayojs blue 45; red 48; # uploaded and nice
-extract1D(45, side='blue')
-extract1D(48, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([45], [48])
-
-# ZTF19abnfgwe blue 46; red 49-50
-extract1D(46, side='blue', reextract='yes')
-extract1D(49, side='red', flux=True, telluric_cal_id = 45, reextract='yes')
-extract1D(50, side='red', flux=True, telluric_cal_id = 45, reextract='yes')
-combine_sides([46], [49, 50])
-
-# ZTF19abuoqzr blue 47; red 51 
-extract1D(47, side='blue')
-extract1D(51, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([47], [51])
-
-# ZTF19abyuzch blue 48; red 52 
-extract1D(48, side='blue')
-extract1D(52, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([48], [52])
-
-# ZTF19abzqdjy blue 49; red 53 
-extract1D(49, side='blue')
-extract1D(53, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([49], [53])
-
-# ZTF19aayimmc blue 50; red 54
+# ZTF19adakmbh blue 50; red 52 # 
 extract1D(50, side='blue')
-extract1D(54, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([50], [54])
+extract1D(52, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([50], [52])
 
-# ZTF19abrtjsf blue 51; red 55 # uploaded and nice
+# ZTF19acudien blue 51; red 53 # 
 extract1D(51, side='blue')
-extract1D(55, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([51], [55])
+extract1D(53, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([51], [53])
 
-# ZTF19abzsnqm blue 52; red 56 # uploaded and nice
-extract1D(52, side='blue')
-extract1D(56, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([52], [56])
-
-# ZTF19abyirjl blue 53; red 57-58
-extract1D(53, side='blue', reextract='yes')
-extract1D(57, side='red', flux=True, telluric_cal_id = 45)
-extract1D(58, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([53], [57, 58])
-
-# ZTF19acahukh blue 54; red 59-60
-extract1D(54, side='blue')
-extract1D(59, side='red', flux=True, telluric_cal_id = 45)
-extract1D(60, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([54], [59, 60])
-
-# ZTF19abzhfjj blue 55; red 61 # uploaded and nice
+# ZTF19acxgxcu blue 55; red 57 # 
 extract1D(55, side='blue')
-extract1D(61, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([55], [61])
+extract1D(57, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([55], [57])
 
-# ZTF19abzysvw blue 56; red 62-63
+# ZTF19acykibn blue 56; red 58 #
 extract1D(56, side='blue')
-extract1D(62, side='red', flux=True, telluric_cal_id = 45)
-extract1D(63, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([56], [62, 63])
+extract1D(58, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([56], [58])
 
-# ZTF19abqxzok blue 57; red 64-65
+# ZTF19abtcapa blue 57; red 59 #
 extract1D(57, side='blue')
-extract1D(64, side='red', flux=True, telluric_cal_id = 45)
-extract1D(65, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([57], [64, 65])
+extract1D(59, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([57], [59])
 
-# ZTF18adfntwj blue 58; red 66-67
+# ZTF19ackzvdp blue 58; red 60--61 #
 extract1D(58, side='blue')
-extract1D(66, side='red', flux=True, telluric_cal_id = 45)
-extract1D(67, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([58], [66, 67])
+extract1D(60, side='red', flux=True, telluric_cal_id = 47)
+extract1D(61, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([58], [60, 61])
 
-# ZTF18adfntwj blue 59; red 68 
+# ZTF19acyobbu blue 59; red 62--63 # 
 extract1D(59, side='blue')
-extract1D(68, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([59], [68])
+extract1D(62, side='red', flux=True, telluric_cal_id = 47)
+extract1D(63, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([59], [62,63])
 
-# ZTF19abtslqm blue 60; red 69
+# ZTF19acukrxv blue 60; red 64-65 # problem!!!!!!!
 extract1D(60, side='blue')
-extract1D(69, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([60], [69])
+extract1D(64, side='red', flux=True, telluric_cal_id = 47)
+extract1D(65, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([60], [64, 65])
 
-# ZTF19acaijhg blue 61; red 70-71
+# ZTF19acvlcjk blue 61; red 66-67 #
 extract1D(61, side='blue')
-extract1D(70, side='red', flux=True, telluric_cal_id = 45)
-extract1D(71, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([61], [70, 71])
+extract1D(66, side='red', flux=True, telluric_cal_id = 47)
+extract1D(67, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([61], [66, 67])
 
-# ZTF19acaiora blue 62; red 72-73
+# ZTF19acyqeaw blue 62; red 68-69 #
 extract1D(62, side='blue')
-extract1D(72, side='red', flux=True, telluric_cal_id = 45)
-extract1D(73, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([62], [72, 73])
+extract1D(68, side='red', flux=True, telluric_cal_id = 47)
+extract1D(69, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([62], [68,69])
 
-# ZTF19abwtqsk blue 63; red 74
+# ZTF19acvkibv blue 63; red 70
 extract1D(63, side='blue')
-extract1D(74, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([63], [74])
+extract1D(70, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([63], [70])
 
-# ZTF19acaiora blue 64; red 75-76
+# ZTF19acyggzu blue 64; red 71
 extract1D(64, side='blue')
-extract1D(75, side='red', flux=True, telluric_cal_id = 45)
-extract1D(76, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([64], [75, 76])
+extract1D(71, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([64], [71])
 
-# ZTF19abzrdup blue 64; red 77
-extract1D(65, side='blue')
-extract1D(77, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([65], [77])
+# ZTF19acygpcu blue 71; red 78-79 # 
+extract1D(71, side='blue')
+extract1D(78, side='red', flux=True, telluric_cal_id = 47)
+extract1D(79, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([71], [78, 79])
 
-# ZTF19abxzmbi blue 66; red 78-79
-extract1D(66, side='blue')
-extract1D(78, side='red', flux=True, telluric_cal_id = 45)
-extract1D(79, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([66], [78, 79])
+# ZTF19acxmpnz blue 72; red 80 # 
+extract1D(72, side='blue')
+extract1D(80, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([72], [80])
 
-# ZTF19abzzuhj blue 67; red 80-81
-extract1D(67, side='blue')
-extract1D(80, side='red', flux=True, telluric_cal_id = 45)
-extract1D(81, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([67], [80, 81])
+# ZTF19acvdmbf blue 73; red 81-82 #
+extract1D(73, side='blue', reextract='yes')
+extract1D(81, side='red', flux=True, telluric_cal_id = 47)
+extract1D(82, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([73], [81, 82])
 
-ZTF18aacsudg blue 68-69; red 82-83
-extract1D(68, side='blue')
-extract1D(69, side='blue')
-extract1D(82, side='red', flux=True, telluric_cal_id = 45)
-extract1D(83, side='red', flux=True, telluric_cal_id = 45)
-combine_sides([68,69], [82, 83])
+# ZTF19adarwno blue 74; red 83-84 # no trace
+
+# ZTF19acvrnlw blue 75; red 85-86 # uploaded and nice
+extract1D(75, side='blue')
+extract1D(85, side='red', flux=True, telluric_cal_id = 47)
+extract1D(86, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([75], [85,86])
+
+# ZTF19ackiwff blue 76; red 87-88
+extract1D(76, side='blue')
+extract1D(87, side='red', flux=True, telluric_cal_id = 47)
+extract1D(88, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([76], [87, 88])
+
+# ZTF18aaexyql blue 77; red 89-90
+extract1D(77, side='blue')
+extract1D(89, side='red', flux=True, telluric_cal_id = 47)
+extract1D(90, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([77], [89, 90])
+
+# ZTF19ackjrru blue 78; red 91
+extract1D(78, side='blue')
+extract1D(91, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([78], [91])
+
+# ZTF19acgjpgh blue 79; red 92 
+extract1D(79, side='blue')
+extract1D(92, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([79], [92])
+
+# ZTF19actfxcd blue 80; red 93-94
+extract1D(80, side='blue')
+extract1D(93, side='red', flux=True, telluric_cal_id = 47)
+extract1D(94, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([80], [93, 94])
+
+# ZTF19actnybi blue 81; red 95-96
+extract1D(81, side='blue')
+extract1D(95, side='red', flux=True, telluric_cal_id = 47)
+extract1D(96, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([81], [95,96])
+
+# ZTF19acyjzeo blue 82; red 97
+extract1D(82, side='blue')
+extract1D(97, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([82], [97])
+
+# ZTF19acmwszk blue 83; red 98
+extract1D(83, side='blue')
+extract1D(98, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([83], [98])
+
+# ZTF19acolhnl blue 84; red 99-100
+extract1D(84, side='blue')
+extract1D(99, side='red', flux=True, telluric_cal_id = 47)
+extract1D(100, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([84], [99, 100])
+
+# ZTF19acsbxem blue 85; red 101-102
+extract1D(85, side='blue')
+extract1D(101, side='red', flux=True, telluric_cal_id = 47)
+extract1D(102, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([85], [101,102])
+
+# ZTF19acoknir blue 86; red 103-104
+extract1D(86, side='blue')
+extract1D(103, side='red', flux=True, telluric_cal_id = 47)
+extract1D(104, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([86], [103, 104])
+
+# ZTF19abrdzrv blue 89; red 109-110
+extract1D(89, side='blue')
+extract1D(109, side='red', flux=True, telluric_cal_id = 47)
+extract1D(110, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([89], [109, 110])
