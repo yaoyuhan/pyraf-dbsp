@@ -70,25 +70,25 @@ extract1D(54, side='blue', arc="blue0053.fits", redo='yes', reextract=True)
 extract1D(56, side='red', arc="red0055.fits", redo='yes', reextract=True, telluric_cal_id = 47)
 combine_sides([54], [56])
 
-# BH07
-extract1D(62, side='blue', arc="blue0063.fits", redo='yes', reextract=True)
-extract1D(62, side='red', arc="red0063.fits", redo='yes', reextract=True)
-combine_sides([62], [62])
-
 # BH12
 extract1D(65, side='blue', arc="blue0066.fits", redo='yes', reextract=True)
 extract1D(72, side='red', arc="red0073.fits", redo='yes', reextract=True, telluric_cal_id = 47)
-combine_sides([67], [70])
+combine_sides([65], [72])
+
+# BH07
+extract1D(67, side='blue', arc="blue0066.fits", redo='yes', reextract=True)
+extract1D(74, side='red', arc="red0073.fits", redo='yes', reextract=True, telluric_cal_id = 47)
+combine_sides([67], [74])
 
 # BH09
-extract1D(80, side='blue', arc="blue0081.fits", redo='yes', reextract=True)
-extract1D(88, side='red', arc="red0089.fits", redo='yes', reextract=True)
-combine_sides([80], [88])
+extract1D(68, side='blue', arc="blue0069.fits", redo='yes', reextract=True)
+extract1D(75, side='red', arc="red0076.fits", redo='yes', reextract=True, telluric_cal_id = 47)
+combine_sides([68], [75])
 
 # BH10
-extract1D(82, side='blue', arc="blue0081.fits", redo='yes', reextract=True)
-extract1D(90, side='red', arc="red0089.fits", redo='yes', reextract=True)
-combine_sides([82], [90])
+extract1D(70, side='blue', arc="blue0069.fits", redo='yes', reextract=True)
+extract1D(77, side='red', arc="red0076.fits", redo='yes', reextract=True, telluric_cal_id = 47)
+w
 
 #################
 
@@ -243,6 +243,18 @@ extract1D(86, side='blue')
 extract1D(103, side='red', flux=True, telluric_cal_id = 47)
 extract1D(104, side='red', flux=True, telluric_cal_id = 47)
 combine_sides([86], [103, 104])
+
+# O35_DN blue 87; red 105-106
+extract1D(87, side='blue')
+extract1D(105, side='red', flux=True, telluric_cal_id = 47)
+extract1D(106, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([87], [105, 106])
+
+# V11_BE1 blue 88; red 107-108
+extract1D(88, side='blue')
+extract1D(107, side='red', flux=True, telluric_cal_id = 47)
+extract1D(108, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([88], [107, 108])
 
 # ZTF19abrdzrv blue 89; red 109-110
 extract1D(89, side='blue')
