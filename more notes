@@ -3,8 +3,7 @@ https://pyraf-dbsp-new.readthedocs.io/en/latest/using.html
 
 first import pyraf, and then run dbsp python script
 
-rsync -avz user1@observer1.palomar.caltech.edu:/remote/instrument7/DBSP/20191005/  /Users/yuhanyao/Documents/DBSP/20191005/
-rsync -avz /Users/yuhanyao/Documents/DBSP/20191005/ yyao@gayatri.caltech.edu:DBSP/20191005/raw/
+rsync -avz user1@observer1.palomar.caltech.edu:/remote/instrument7/DBSP/20200114/*.fits .
 on gayatri: rsync -avz raw/ reduced/
 
 cd reduced
