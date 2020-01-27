@@ -151,6 +151,53 @@ extract1D(73, side='blue')
 extract1D(85, side='red', flux=True, telluric_cal_id = 99)
 combine_sides([73], [85])
 
+# ZTF20aaenkwk
+extract1D(74, side='blue')
+extract1D(86, side='red', flux=True, telluric_cal_id = 99)
+extract1D(87, side='red', flux=True, telluric_cal_id = 99)
+combine_sides([74], [86, 87])
+
+# ZTF20aahgejq
+extract1D(75, side='blue')
+extract1D(88, side='red', flux=True, telluric_cal_id = 99)
+extract1D(89, side='red', flux=True, telluric_cal_id = 99)
+combine_sides([75], [88, 89])
+
+# ZTF19adaiujb
+extract1D(76, side='blue')
+extract1D(90, side='red', flux=True, telluric_cal_id = 99)
+extract1D(91, side='red', flux=True, telluric_cal_id = 99)
+combine_sides([76], [90, 91])
+
+# ZTF19acyjjni
+extract1D(77, side='blue')
+extract1D(92, side='red', flux=True, telluric_cal_id = 99)
+combine_sides([77], [92])
+
+# ZTF20aaflcny
+extract1D(78, side='blue')
+extract1D(93, side='red', flux=True, telluric_cal_id = 99)
+extract1D(94, side='red', flux=True, telluric_cal_id = 99)
+combine_sides([78], [93, 94])
+
+# ZTF20aabqiav
+extract1D(79, side='blue')
+extract1D(95, side='red', flux=True, telluric_cal_id = 99)
+combine_sides([79], [95])
+
+# ZTF19acyndbj
+extract1D(80, side='blue')
+extract1D(96, side='red', flux=True, telluric_cal_id = 99)
+extract1D(97, side='red', flux=True, telluric_cal_id = 99)
+combine_sides([80], [96, 97])
+
+
+
+
+
+
+
+
 
 
 
