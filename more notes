@@ -44,7 +44,7 @@ create_arc_dome()
 
 #################
 
-# 20200101
+# 20200127
 store_standards([46], side='blue', redo='yes')
 extract1D(47, side='red', flux=False, redo='yes')
 store_standards([48], side='red', telluric_cal_id = 47, redo='yes')
@@ -87,7 +87,7 @@ combine_sides([68], [75])
 # BH10
 extract1D(70, side='blue', arc="blue0069.fits", redo='yes', reextract=True)
 extract1D(77, side='red', arc="red0076.fits", redo='yes', reextract=True, telluric_cal_id = 47)
-w
+
 
 #################
 
