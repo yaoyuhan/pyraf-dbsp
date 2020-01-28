@@ -191,6 +191,11 @@ extract1D(96, side='red', flux=True, telluric_cal_id = 99)
 extract1D(97, side='red', flux=True, telluric_cal_id = 99)
 combine_sides([80], [96, 97])
 
+# ZTF20aafckit
+extract1D(81, side='blue')
+extract1D(98, side='red', flux=True, telluric_cal_id = 99)
+combine_sides([81], [98])
+
 
 
 
