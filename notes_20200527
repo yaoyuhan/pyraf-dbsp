@@ -1,0 +1,150 @@
+https://pyraf-dbsp-new.readthedocs.io/en/latest/quickstart.html
+https://pyraf-dbsp-new.readthedocs.io/en/latest/using.html
+
+python check_airmass
+
+first import pyraf, and then run dbsp python script
+
+rsync -avz user1@observer1.palomar.caltech.edu:/remote/instrument7/DBSP/20200127/*.fits .
+on gayatri: rsync -avz raw/ reduced/
+
+cd reduced
+cp -r /home/ia/DBSP_pipeline/uparm .
+mkiraf 
+(say 'n' when asked when you want to restart uparm, and 'xgterm' when asked what terminal type)
+/usr/local/EPD/epd-7.2.2/bin/ipython
+run /home/ia/DBSP_pipeline/dbsp_new.py
+
+create_arc_dome()
+
+########## Telluric correction for the red side
+extract1D(82, side='red', flux=False)
+
+################# Store standards
+store_standards([83], side='red', telluric_cal_id = 82)
+store_standards([68], side='blue')
+
+################# Science objects
+
+# ZTF20aayrobw blue 43; red 44-45
+extract1D(43, side='blue')
+extract1D(44, side='red', flux=True, telluric_cal_id = 82)
+extract1D(45, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([43], [44, 45])
+
+# ZTF20aayngca blue 44; red 46
+extract1D(44, side='blue')
+extract1D(46, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([44], [46])
+
+# ZTF20aavofki blue 45; red 47-48
+extract1D(43, side='blue')
+extract1D(44, side='red', flux=True, telluric_cal_id = 82)
+extract1D(45, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([43], [44, 45])
+
+# ZTF20abbplei blue 61; red 72
+extract1D(61, side='blue')
+extract1D(72, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([61], [72])
+
+# ZTF18aahatvc blue 63; red 75
+extract1D(63, side='blue')
+extract1D(75, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([63], [75])
+
+# ZTF20aawijco blue 67; red 81
+extract1D(67, side='blue')
+extract1D(81, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([67], [81])
+
+# ZTF20aayprqz blue 65; red 78
+extract1D(65, side='blue')
+extract1D(78, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([65], [78])
+
+# ZTF20aazhyrs blue 55; red 61
+extract1D(55, side='blue')
+extract1D(61, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([55], [61])
+
+# ZTF20aawbzlo blue 51; red 56
+extract1D(51, side='blue')
+extract1D(56, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([51], [56])
+
+# ZTF20aaxunbm blue 47; red 51
+extract1D(47, side='blue')
+extract1D(51, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([47], [51])
+
+# ZTF20aaullwp blue 48; red 52
+extract1D(48, side='blue')
+extract1D(52, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([48], [52])
+
+# ZTF20aayknbc blue 49; red 53
+extract1D(49, side='blue')
+extract1D(53, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([49], [53])
+
+# ZTF20aanaeev blue 66; red 79-80
+extract1D(66, side='blue')
+extract1D(79, side='red', flux=True, telluric_cal_id = 82)
+extract1D(80, side='red', flux=True, telluric_cal_id = 82)
+combine_sides([66], [79, 80])
+
+# ZTF20aawxsit blue 64; red 76-77
+extract1D(64, side='blue')
+extract1D(76, side='red', flux=True, telluric_cal_id = 82)
+extract1D(77, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF20aaqtlwo blue 62; red 73-74
+extract1D(62, side='blue')
+extract1D(73, side='red', flux=True, telluric_cal_id = 82)
+extract1D(74, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF20aavnnzx blue 60; red 70-71
+extract1D(60, side='blue')
+extract1D(70, side='red', flux=True, telluric_cal_id = 82)
+extract1D(71, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF20aayxdse blue 59; red 68-69
+extract1D(59, side='blue')
+extract1D(68, side='red', flux=True, telluric_cal_id = 82)
+extract1D(69, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF20aattqnm blue 58; red 66-67
+extract1D(58, side='blue')
+extract1D(66, side='red', flux=True, telluric_cal_id = 82)
+extract1D(67, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF20aattyuz blue 57; red 64-65
+extract1D(57, side='blue')
+extract1D(64, side='red', flux=True, telluric_cal_id = 82)
+extract1D(65, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF20aazchcq blue 56; red 62-63
+extract1D(56, side='blue')
+extract1D(62, side='red', flux=True, telluric_cal_id = 82)
+extract1D(63, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF20aatpoef blue 54; red 59-60
+extract1D(54, side='blue')
+extract1D(59, side='red', flux=True, telluric_cal_id = 82)
+extract1D(60, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF20aaxgbtu blue 50; red 54-55
+extract1D(50, side='blue')
+extract1D(54, side='red', flux=True, telluric_cal_id = 82)
+extract1D(55, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF19adcetym blue 46; red 49-50
+extract1D(46, side='blue')
+extract1D(49, side='red', flux=True, telluric_cal_id = 82)
+extract1D(50, side='red', flux=True, telluric_cal_id = 82)
+
+# ZTF20aavofki blue 45; red 47-48
+extract1D(45, side='blue')
+extract1D(47, side='red', flux=True, telluric_cal_id = 82)
+extract1D(48, side='red', flux=True, telluric_cal_id = 82)
