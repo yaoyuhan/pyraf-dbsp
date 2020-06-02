@@ -17,6 +17,16 @@ run /home/ia/DBSP_pipeline/dbsp_new.py
 
 create_arc_dome()
 
+
+####### For Adam's paper
+extract1D(47, side='red', flux=False)
+store_standards([44], side='red', telluric_cal_id = 47)
+store_standards([44], side='blue')
+
+extract1D(75, side='blue')
+extract1D(75, side='red', flux=True, telluric_cal_id = 47)
+combine_sides([75], [75])
+
 ########## Telluric correction for the red side
 extract1D(82, side='red', flux=False)
 
