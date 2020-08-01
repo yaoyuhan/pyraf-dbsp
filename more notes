@@ -42,18 +42,25 @@ for x in myfiles:
 '''   
 create_arc_dome()
 
-#################
-# 20200731
+################# 20200731
+# Tremendous amount of errors for this weeks data. 
+# I did lots of editing using /Users/yuhanyao/Desktop/observation/DBSP_20200731/check_header.py
+# and transfered the reduced dir to gayatri
+
+# standard
+store_standards([36], side='blue')
 extract1D(36, side='red', flux=False)
 store_standards([36], side='red', telluric_cal_id = 36)
+
+# AT2019wey
+extract1D(73, side='blue', arc="blue0074.fits")
 extract1D(77, side='red', arc="red0078.fits", telluric_cal_id = 36)
 
-store_standards([36], side='blue')
-extract1D(73, side='blue', arc="blue0074.fits")
-
-
-# for Kevin
-extract1D(76, side='red', telluric_cal_id = 36)
+# for Matthew
+extract1D(34, side='blue')
+extract1D(35, side='blue')
+extract1D(34, side='red', telluric_cal_id = 36)
+extract1D(35, side='red', telluric_cal_id = 36)
 
 
 #################
