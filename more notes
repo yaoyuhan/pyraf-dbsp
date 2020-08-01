@@ -43,6 +43,20 @@ for x in myfiles:
 create_arc_dome()
 
 #################
+# 20200731
+extract1D(36, side='red', flux=False)
+store_standards([36], side='red', telluric_cal_id = 36)
+extract1D(77, side='red', arc="red0078.fits", telluric_cal_id = 36)
+
+store_standards([36], side='blue')
+extract1D(73, side='blue', arc="blue0074.fits")
+
+
+# for Kevin
+extract1D(76, side='red', telluric_cal_id = 36)
+
+
+#################
 
 # 20200127
 store_standards([46], side='blue', redo='yes')
