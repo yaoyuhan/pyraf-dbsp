@@ -42,26 +42,35 @@ for x in myfiles:
 '''   
 create_arc_dome()
 
-################# 20200731
-# Tremendous amount of errors for this weeks data. 
-# I did lots of editing using /Users/yuhanyao/Desktop/observation/DBSP_20200731/check_header.py
+################# 20200814
+# I did a bit of editing using /Users/yuhanyao/Desktop/observation/DBSP_20200814/check_header.py
 # and transfered the reduced dir to gayatri
 
+########## version 2
 # standard
-store_standards([36], side='blue')
-extract1D(36, side='red', flux=False)
-store_standards([36], side='red', telluric_cal_id = 36)
+store_standards([73], side='blue')
+extract1D(77, side='red', flux=False)
+store_standards([78], side='red', telluric_cal_id = 77)
 
 # AT2019wey
-extract1D(73, side='blue', arc="blue0074.fits")
-extract1D(77, side='red', arc="red0078.fits", telluric_cal_id = 36)
+extract1D(69, side='blue', arc="blue0070.fits")
+extract1D(73, side='red', arc="red0074.fits", telluric_cal_id = 77)
 
-# for Matthew
-extract1D(34, side='blue')
-extract1D(35, side='blue')
-extract1D(34, side='red', telluric_cal_id = 36)
-extract1D(35, side='red', telluric_cal_id = 36)
 
+########## version 3
+# standard
+store_standards([74], side='blue')
+# AT2019wey
+extract1D(69, side='blue', arc="blue0070.fits")
+
+
+
+extract1D(78, side='red', flux=False)
+store_standards([77], side='red', telluric_cal_id = 78)
+extract1D(73, side='red', arc="red0074.fits", telluric_cal_id = 78)
+
+3500, 5600
+5700 9000
 
 #################
 
