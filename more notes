@@ -72,7 +72,11 @@ plot_sides([72, 73], [78, 79], scales=[0.8,0.9,1.0,1.1])
 plt.ylim(0, 1e-15)
 write_sides([72, 73], [78, 79], "AT2019wey_notelluric_correction", 0.8)
 
-
+# ZTF20abxcnlf
+extract1D(53, side='blue')
+extract1D(55, side='red', telluric_cal_id=None, reextract=True, redo='yes')
+plot_sides([53], [55], scales=[0.8,0.9,1.0,1.1])
+write_sides([53], [55], "ZTF20abxcnlf_notelluric_correction", 0.9)
 
 ################# 20200814
 # I did a bit of editing using /Users/yuhanyao/Desktop/observation/DBSP_20200814/check_header.py
